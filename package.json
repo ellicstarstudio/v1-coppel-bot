@@ -1,0 +1,14 @@
+{
+  "name": "v1-coppel-bot",
+  "version": "1.0.0",
+  "description": "V1 | COPPEL - Bot de Discord con sistema de tickets y créditos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "node deploy-commands.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5"
+  }
+}
