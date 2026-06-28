@@ -13,7 +13,12 @@ module.exports = {
   async execute(interaction) {
     const target = interaction.options.getUser('usuario');
     const credits = loadJSON('credits.json', {});
+    const loans = loadJSON('loans.json', {});
     const data = credits[target.id];
+
+    const deudaActual = Object.values(loans)
+      .filter((l) => l.usuarioId === target.id && l.activo)
+      .reduce((sum, l) => sum + Number(l.montoAdeudado || 0), 0);
 
     const embed = new EmbedBuilder()
       .setColor(config.colors.primary)
@@ -35,6 +40,11 @@ module.exports = {
         { name: 'Otorgado por', value: data.otorgadoPorTag || 'N/A', inline: true }
       );
     }
+
+    embed.addFields({
+      name: '💵 Deuda Actual (Préstamos)',
+      value: `$${deudaActual.toLocaleString('es-MX')}`,
+    });
 
     await interaction.reply({ embeds: [embed], ephemeral: true });
   },

@@ -22,6 +22,45 @@ module.exports = {
     danger: 0xed4245, // rojo
   },
 
+  // Foro donde se publica cada préstamo (comando /prestamo-otorgar)
+  loansForumId: '1520526381774278718',
+
+  // Imagen/firma que se pone al final de cada publicación de préstamo
+  // ⚠️ Igual que la otra imagen, esta URL caduca con el tiempo (link firmado de Discord).
+  // Reemplázala en config.js cuando deje de cargar.
+  loanSignatureImageUrl:
+    'https://cdn.discordapp.com/attachments/1520572942105444492/1520573033822158968/coppel-rediseno-de-logo-oficial-v0-9f82yfin6z5f1.webp',
+
+  // Panel de estatus de soporte (comando /panel-estatus)
+  statusPanelChannelId: '1520881575733231730', // canal donde vive el panel con los 3 botones
+  statusAnnounceChannelId: '1520882284759351338', // canal donde se anuncia el cambio de estatus (@everyone)
+  statusVoiceChannelId: '1520281487788867644', // canal de voz que cambia de nombre según el estatus
+
+  // Textos y nombre de canal de voz para cada estatus de soporte
+  supportStatus: {
+    abierto: {
+      label: 'Abierto',
+      emoji: '🟢',
+      vcName: '📲 | Atencion al cliente: 🟢',
+      announce:
+        '🟢 **¡El soporte ha sido reabierto!** Ya puedes abrir tickets nuevamente desde el panel de soporte.',
+    },
+    cerrado: {
+      label: 'Cerrado',
+      emoji: '🔴',
+      vcName: '📲 | Atencion al cliente: 🔴',
+      announce:
+        '🔴 **El soporte se encuentra cerrado por el momento.** No será posible abrir tickets hasta que se reabra el servicio. Gracias por tu paciencia.',
+    },
+    mantenimiento: {
+      label: 'Mantenimiento',
+      emoji: '🟡',
+      vcName: '📲 | Atencion al cliente: 🟡',
+      announce:
+        '🟡 **El soporte está en mantenimiento.** Estamos realizando ajustes; no se podrán abrir tickets de forma temporal.',
+    },
+  },
+
   // Categorías de ticket: key interna -> nombre visible, id de la categoría de Discord, emoji
   categories: {
     dudas: {

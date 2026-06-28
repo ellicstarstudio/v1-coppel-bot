@@ -8,6 +8,7 @@ const {
   handleClose,
   handleMoveSelect,
 } = require('./handlers/tickets');
+const { handleStatusButton } = require('./handlers/status');
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
@@ -45,6 +46,10 @@ client.on(Events.InteractionCreate, async (interaction) => {
     if (interaction.isButton()) {
       if (interaction.customId === 'ticket_claim') return handleClaim(interaction);
       if (interaction.customId === 'ticket_close') return handleClose(interaction);
+      if (interaction.customId === 'estatus_abierto') return handleStatusButton(interaction, 'abierto');
+      if (interaction.customId === 'estatus_cerrado') return handleStatusButton(interaction, 'cerrado');
+      if (interaction.customId === 'estatus_mantenimiento')
+        return handleStatusButton(interaction, 'mantenimiento');
       return;
     }
   } catch (error) {

@@ -48,6 +48,15 @@ async function handleCategorySelect(interaction) {
     return interaction.reply({ content: '❌ Categoría no válida.', ephemeral: true });
   }
 
+  const statusData = loadJSON('status.json', { state: 'abierto' });
+  if (statusData.state !== 'abierto') {
+    const info = config.supportStatus[statusData.state];
+    return interaction.reply({
+      content: `❌ No es posible abrir tickets en este momento. Estado actual del soporte: ${info.emoji} **${info.label}**.`,
+      ephemeral: true,
+    });
+  }
+
   const tickets = loadJSON('tickets.json', {});
   const existing = Object.entries(tickets).find(
     ([, t]) => t.userId === interaction.user.id && t.open
